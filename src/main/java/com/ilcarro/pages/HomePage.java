@@ -29,6 +29,7 @@ public class HomePage extends BasePage {
     WebElement addRentLink;
 
     public AddRentPage clickOnAddRentLink() {
+        pause(1000);
         click(addRentLink);
         return new AddRentPage(driver);
     }

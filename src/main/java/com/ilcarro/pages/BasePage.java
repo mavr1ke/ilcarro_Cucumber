@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
 
@@ -38,11 +39,28 @@ public abstract class BasePage {
         }
     }
 
+    public void pause(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public boolean isElementDisplayed(WebElement element) {
         return element.isDisplayed();
     }
 
     public void quit() {
         driver.quit();
+    }
+
+    public void select(WebElement element,String option) {
+        Select select = new Select(element);
+        select.selectByVisibleText(option);
+    }
+
+    public void uploadFile(WebElement element, String path) {
+        element.sendKeys(path);
     }
 }
